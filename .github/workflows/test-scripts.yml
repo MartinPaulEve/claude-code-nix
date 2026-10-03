@@ -1,0 +1,22 @@
+name: Test Scripts
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/test-scripts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/test-scripts.yml'
+
+jobs:
+  test-update-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run update-tags tests
+        run: ./scripts/test-update-tags.sh
